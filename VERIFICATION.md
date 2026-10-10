@@ -1,5 +1,7 @@
 # 验证记录 · 2026-10-06
 
+本页保留为历史记录；当前 V1.5 验证结果见 [VERIFICATION-V1.5.md](VERIFICATION-V1.5.md)。
+
 - Node 语法检查通过。
 - DESIGN.md lint：0 errors、0 warnings。
 - Edge / Playwright 浏览器实测通过：8个页面、新增空值验证与刷新保留、搜索空结果与清空、总部客服所开代理归公司、两种区域身份仅成都且无调整区域入口、Escape关闭弹窗、奖励比例边界与保存、CSV下载、390px无页面横向溢出；无页面脚本错误。
