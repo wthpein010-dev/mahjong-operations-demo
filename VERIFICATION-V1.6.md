@@ -5,4 +5,5 @@
 - 8 extension invariants passed: ticket current scope/service relation, draft privacy, task ownership/full scope, zero-authority result and valid lifecycle.
 - Chrome: ticket required-field rejection, creation/reload persistence, HQ assignment, assigned regional support reply and messages; announcement draft/publish/withdraw; config rejection of zero, save, dirty keep/discard; responsible readonly config and scoped notice options; nine new pages without warning/error logs.
 - Public prototype uses fictional records. No production authentication/API, payment, game writes, scheduling, attachment uploads or generated job files. No transfer action.
-`n- Chrome 390px viewport: body width 380px, mobile page selector visible, table remains internally scrollable; viewport reset. Local test changes reset through application confirmation.
+
+- Chrome 390px viewport: body width 380px, mobile page selector visible, table remains internally scrollable; viewport reset. Local test changes reset through application confirmation.
