@@ -1,3 +1,13 @@
+.sites-runtime/
 node_modules/
-test-results/
-.DS_Store
+*.tar.gz
+
+.wrangler/
+.vinext/
+dist/server/
+dist/client/
+
+.next/
+*.tsbuildinfo
+dist/
+.env*

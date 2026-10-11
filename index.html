@@ -1,5 +1,43 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="麻溜后台管理系统交互演示，多区域负责人、游戏统计、充值退款与账号管理。"><title>麻溜后台管理系统 · V1.6</title><link rel="stylesheet" href="style.css?v=1.6"></head>
-<body><aside><a class="brand" href="?page=overview"><span class="tile">雀</span><span>雀序<small>麻溜后台管理系统</small></span></a><nav id="nav"></nav><div class="side-note"><span class="dot"></span> 交互演示环境<p>所有数据均为虚构示例<br>修改仅保存在当前浏览器</p></div></aside><div class="shell"><header><div class="breadcrumb">运营工作台 <span>/</span> <b id="crumb">数据总览</b></div><div class="identity"><span class="demo-tag">DEMO</span><label for="role">体验身份</label><select id="role"><option value="hq">总公司</option><option value="service">总部客服</option><option value="regional">地区负责人</option><option value="local">区域客服</option></select><span class="avatar">林</span></div></header><main id="main"></main><footer>雀序运营管理后台 · 产品交互原型 <span>V1.6 · 2026-10-11 · 虚构数据演示</span></footer></div><dialog id="dialog" aria-labelledby="dialog-title"></dialog><div id="toast" role="status" aria-live="polite"></div><script src="app.js?v=1.6"></script><script src="extensions.js?v=1.6"></script>
-</body></html>
-
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="雀序运营后台 V1.7 开源开发参考：Cloudflare D1、虚构示例数据、代理系统 SQL 和 OpenAPI 接口交接资料。">
+  <title>雀序 · 运营后台开发参考 V1.7</title>
+  <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+  <style>
+    :root{--ink:#17352d;--muted:#526d64;--green:#26724f;--wash:#f2f7f4;--line:#cad9d0;--paper:#fff;--accent:#d5e9dc;color-scheme:light;scrollbar-color:#7e9d8b var(--wash);scrollbar-width:thin}
+    *{box-sizing:border-box}html{scrollbar-gutter:stable}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.75 "Microsoft YaHei","PingFang SC",Arial,sans-serif}a{color:var(--green);text-underline-offset:4px;cursor:pointer}a:hover{color:var(--ink)}a:focus-visible{outline:3px solid var(--green);outline-offset:5px;border-radius:3px}::selection{background:var(--accent)}::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:var(--wash)}::-webkit-scrollbar-thumb{background:#7e9d8b;border:2px solid var(--wash);border-radius:8px}::-webkit-scrollbar-thumb:hover{background:var(--green)}
+    .skip{position:absolute;left:20px;top:-80px;background:var(--paper);padding:10px 16px;z-index:2}.skip:focus{top:10px}.wrap{max-width:1120px;margin:auto;padding:0 32px}.mast{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:28px 0;border-bottom:1px solid var(--line)}.brand{font-weight:700;letter-spacing:.04em}.brand-mark{display:inline-grid;place-items:center;width:34px;height:40px;background:var(--paper);border:1px solid var(--line);border-radius:5px;box-shadow:0 3px 0 var(--line);margin-right:12px;color:var(--green)}.version{font:13px/1.5 Consolas,monospace;color:var(--muted)}
+    .intro{display:grid;grid-template-columns:1.3fr 1fr;gap:64px;padding:70px 0 54px}.eyebrow{font:12px/1.5 Consolas,monospace;color:var(--green);letter-spacing:.12em;margin:0 0 14px}h1{font-size:clamp(32px,4vw,48px);line-height:1.3;letter-spacing:-.03em;margin:0 0 22px}h1 span{font-weight:400;display:block;font-size:.76em;margin-top:8px}.lead{max-width:590px;color:var(--muted);margin:0 0 26px}.actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.button{display:inline-block;background:var(--green);color:var(--paper);border:1px solid var(--green);border-radius:6px;padding:11px 22px;min-height:48px;text-decoration:none;font-weight:700}.button:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}.button:active{transform:translateY(1px)}.secondary{padding:10px 4px;font-weight:700}.facts{align-self:center;border-left:3px solid var(--green);padding:10px 0 10px 24px}.facts h2{font-size:16px;margin:0 0 14px}.facts dl{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;font-size:14px;margin:0}.facts dt{color:var(--muted)}.facts dd{margin:0;font-weight:700}.facts small{display:block;color:var(--muted);font-size:12px;margin-top:14px}
+    .section-title{display:flex;align-items:baseline;gap:20px;border-top:1px solid var(--line);padding-top:30px;margin-bottom:24px}.section-title h2{font-size:22px;margin:0}.section-title p{color:var(--muted);font-size:14px;margin:0}.resources{display:grid;grid-template-columns:1fr 1fr;gap:20px}.resource{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:26px 28px}.resource h3{font-size:18px;margin:0 0 8px}.resource p{font-size:14px;color:var(--muted);margin:0 0 18px}.links{display:flex;gap:12px 20px;flex-wrap:wrap;font-size:14px}.links a{min-height:34px;display:inline-flex;align-items:center}.note{padding:22px 26px;background:#e4efe7;border-left:3px solid var(--green);margin:26px 0 44px;font-size:14px;color:var(--muted)}.note strong{color:var(--ink)}footer{border-top:1px solid var(--line);padding:24px 0 38px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:16px}
+    @media(max-width:760px){.wrap{padding:0 20px}.mast{padding:20px 0}.version{font-size:11px}.intro{grid-template-columns:1fr;gap:30px;padding:42px 0 36px}.facts{padding-left:20px}.resources{grid-template-columns:1fr}.resource{padding:22px}.section-title{display:block}.section-title p{margin-top:6px}footer{display:block}footer span{display:block;margin-bottom:8px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+    @media(forced-colors:active){.button,.resource,.facts,.note{border:1px solid CanvasText}.brand-mark{box-shadow:none}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <div class="wrap">
+    <header class="mast"><div class="brand"><span class="brand-mark" aria-hidden="true">雀</span>雀序 · 麻溜后台</div><div class="version">V1.7 / MIT / 2026-10-11</div></header>
+    <main id="main">
+      <section class="intro" aria-labelledby="title">
+        <div><p class="eyebrow">OPERATIONS / DEVELOPMENT REFERENCE</p><h1 id="title">运营后台<span>可运行、可下载的开发参考</span></h1><p class="lead">围绕区域、代理、茶馆、玩家与客服，提供后台演示、数据库示例和接口交接材料。运行版由 Sites 与 Cloudflare D1 提供，源码独立开源。</p><div class="actions"><a class="button" href="https://mahjong-operations-demo.polite-chord-7994.chatgpt.site/">打开后台演示 ↗</a><a class="secondary" href="https://github.com/wthpein010-dev/mahjong-operations-demo">查看 GitHub 源码 ↗</a></div></div>
+        <aside class="facts" aria-labelledby="reference-data"><h2 id="reference-data">公开参考基线</h2><dl><dt>数据库</dt><dd>28 张表 · 2,510 行</dd><dt>代理与茶馆</dt><dd>24 个代理 · 48 家茶馆</dd><dt>统计事件</dt><dd>360 场对局 · 240 笔充值</dd><dt>接口资料</dt><dd>49 个待对接设计 · 6 个演示接口</dd></dl><small>全部使用虚构资料。访客修改保存在独立 D1 沙盒快照。</small></aside>
+      </section>
+      <section aria-labelledby="resources-title">
+        <div class="section-title"><h2 id="resources-title">开发资料</h2><p>按数据库、接口与协作流程直接查阅。</p></div>
+        <div class="resources">
+          <article class="resource"><h3>代理系统 SQL</h3><p>金额使用整数分，奖励比例使用基点；保留事件区域与服务快照，包含退款奖励扣回示例。</p><div class="links"><a href="public/reference/sqlite-schema.sql" download>SQLite / D1 结构</a><a href="public/reference/sqlite-seed.sql" download>SQLite / D1 数据</a><a href="public/reference/mysql-schema.sql" download>MySQL 8 结构</a><a href="public/reference/mysql-seed.sql" download>MySQL 8 数据</a></div></article>
+          <article class="resource"><h3>OpenAPI 与 Apifox</h3><p>55 项接口操作统一说明字段、请求示例、返回与状态。导入文件已经准备，尚未同步实际 Apifox 项目。</p><div class="links"><a href="public/reference/openapi.json" download>下载 OpenAPI JSON</a><a href="https://github.com/wthpein010-dev/mahjong-operations-demo/blob/main/docs/integration/APIFOX-IMPORT.md">查看 Apifox 导入说明 ↗</a></div></article>
+          <article class="resource"><h3>接口交接</h3><p>阿福完善业务接口与资料后，交 Nirvana 对接测试；问题修复后，将定义、示例和测试记录归档 Apifox。</p><div class="links"><a href="https://github.com/wthpein010-dev/mahjong-operations-demo/tree/main/docs/integration">查看完整交接清单 ↗</a><a href="https://github.com/wthpein010-dev/mahjong-operations-demo/blob/main/docs/integration/api-catalog.json">查看接口目录 ↗</a></div></article>
+          <article class="resource"><h3>数据字典与本地运行</h3><p>完整虚构 JSON、字段关系、SQL 导入校验与 Vinext / D1 本地启动说明都保存在仓库。</p><div class="links"><a href="public/reference/seed.json" download>下载完整虚构数据</a><a href="https://github.com/wthpein010-dev/mahjong-operations-demo/blob/main/database/data-dictionary.md">数据字典 ↗</a><a href="https://github.com/wthpein010-dev/mahjong-operations-demo#本地运行">本地运行 ↗</a></div></article>
+        </div>
+      </section>
+      <p class="note"><strong>参考范围：</strong>规范化业务表是公开只读基线，访客沙盒不会自动回写实体表。演示角色切换不代表生产鉴权；真实业务接口仍需按清单接入。MySQL SQL 已生成，尚未在 MySQL 服务执行。后台无转卡、退款执行或真实支付操作。</p>
+    </main>
+    <footer><span>雀序运营后台 · MIT 开源开发参考</span><span>GitHub Pages 提供资料入口 · Sites 提供数据库运行版</span></footer>
+  </div>
+</body>
+</html>
